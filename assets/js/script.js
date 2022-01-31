@@ -83,15 +83,21 @@ var createTaskActions = function(taskId) {
     actionContainerEl.appendChild(statusSelectEl);
 
     var statusChoices = ["To Do", "In Progress", "COMPLETE"];
-    
-    for (var i = 0; i < statusChoices.length; i++ ){
-        var statusOptionEl = document.createElement("option");
-        statusOptionEl.textContent = statusChoices[i];
-        statusOptionEl.setAttribute("value", statusChoices[i])
 
-        // append to select
-        statusSelectEl.appendChild(statusOptionEl);
-    }
+    var loadTasks = function() {
+        tasks = localStorage.getItem("tasks")
+    
+                    if(!task){
+                        task=[];
+                        return false;
+                    }
+                    savedTasks =JSON.parse(savedTasks)
+
+                    for (i = 0; i < savedTasks.length; i++){
+                        // pass each task objet into createTaskEl()
+                        createTaskEl(savedTasks[i]);
+                    }
+                }
 
     return actionContainerEl
 }
